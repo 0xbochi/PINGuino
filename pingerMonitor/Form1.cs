@@ -14,9 +14,16 @@ namespace pingerMonitor
 {
 
 
-
     public partial class Form1 : Form
     {
+
+        public static class statusSoft
+        {
+            public static bool showCPU ;
+            public static bool showRAM ;
+
+        }
+
 
         public int seconds { get; set; }
         public int ping { get; set; }
@@ -50,7 +57,15 @@ namespace pingerMonitor
             chart1.ChartAreas[0].AxisX.Enabled = AxisEnabled.False;
             chart1.ChartAreas[0].AxisY.Enabled = AxisEnabled.False;
 
+            chart1.ChartAreas[0].AxisY.Minimum = 5;
+            chart1.ChartAreas[0].AxisY.Maximum = 150;
+
             chart1.Legends.Clear();
+
+            lb_cpu.Visible = false;
+            lb_ram.Visible = false;
+
+           
 
         }
 
@@ -81,6 +96,47 @@ namespace pingerMonitor
                 lb_ping.ForeColor = System.Drawing.Color.Red;
             }
 
+            if (colorPing < 0)
+            {
+                colorPing = 0;
+            }
+            
+            
+            if (chart1.Series["ping"].Points.Count >= 300)
+            {
+                foreach(var series in chart1.Series)
+                {
+                    chart1.Series[0].Points.RemoveAt(0);
+                    chart1.ResetAutoValues();
+                    MessageBox.Show("OK");
+                }
+            }
+
+            if (statusSoft.showRAM == true)
+            {
+                lb_ram.Visible = true;
+                float fram = pRAM.NextValue();
+                lb_ram.Text = "RAM : " + string.Format("{0:0.00}%", fram);
+
+            }
+
+            if (statusSoft.showCPU == true)
+            {
+                lb_cpu.Visible = true;
+                float fcpu = pCPU.NextValue();
+                lb_cpu.Text = "CPU : " + string.Format("{0:0.00}%", fcpu);
+            }
+
+
+
+
+            /*
+            if (statusSoft.showCPU == true)
+            {
+                //float fcpu = pCPU
+            }
+            */
+
 
 
         }
@@ -92,6 +148,98 @@ namespace pingerMonitor
 
         private void Lb_sync_ping_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Lb_ram_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void ShowMeCPUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (statusSoft.showCPU == true)
+            {
+                statusSoft.showCPU = false;
+                lb_cpu.Visible = false;
+                showMeCPUToolStripMenuItem.Text = "Show me CPU";
+            }
+            else
+            {
+                statusSoft.showCPU = true;
+                showMeCPUToolStripMenuItem.Text = "Hide CPU";
+            }
+        }
+
+        private void Lb_ram_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShowMeRAMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (statusSoft.showRAM == true)
+            {
+                statusSoft.showRAM = false;
+                lb_ram.Visible = false;
+                showMeRAMToolStripMenuItem.Text = "Show me RAM";
+            }
+            else
+            {
+                statusSoft.showRAM = true;
+                showMeRAMToolStripMenuItem.Text = "Hide RAM";
+            }
+
+        }
+
+        private void GitHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/devbosch");
+
+        }
+
+        private void TwitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://twitter.com/__Wrath__404__");
+
+        }
+
+        private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Lb_checkVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            if (lb_checkVisible.Checked == true)
+            {
+                TopMost = true;
+                Opacity = 0.75;
+                Form1.ActiveForm.FormBorderStyle =  FormBorderStyle.None;
+                pictureBox1.Visible = false;
+                menuStrip1.Visible = false;
+                lb_srv.Visible = false;
+            }
+            if (lb_checkVisible.Checked == false)
+            {
+                TopMost = false;
+                Opacity = 1;
+                Form1.ActiveForm.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                pictureBox1.Visible = true;
+                menuStrip1.Visible = true;
+                lb_srv.Visible = true;
+            }
+
 
         }
     }
