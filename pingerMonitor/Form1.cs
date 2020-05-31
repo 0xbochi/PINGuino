@@ -108,7 +108,6 @@ namespace pingerMonitor
                 {
                     chart1.Series[0].Points.RemoveAt(0);
                     chart1.ResetAutoValues();
-                    MessageBox.Show("OK");
                 }
             }
 
@@ -215,8 +214,8 @@ namespace pingerMonitor
         }
 
         private void DonateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+        { 
+            System.Diagnostics.Process.Start("https://www.paypal.me/LePrince");
         }
 
         private void Lb_checkVisible_CheckedChanged(object sender, EventArgs e)
