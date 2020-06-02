@@ -10,6 +10,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
+
+
+/*
+ * By DevBOSCH
+ * 
+ * Official repository : https://github.com/devbosch/PINGuino
+ * 
+ * Official Website : http://pinguino.xyz
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 namespace pingerMonitor
 {
 
