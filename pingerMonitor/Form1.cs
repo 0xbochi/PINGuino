@@ -91,7 +91,12 @@ namespace pingerMonitor
                 lb_ping.ForeColor = System.Drawing.Color.Brown;
             }
 
-            if (colorPing > 80)
+            if (colorPing > 80 && colorPing < 100)
+            {
+                lb_ping.ForeColor = System.Drawing.Color.Orange;
+            }
+
+            if (colorPing > 100)
             {
                 lb_ping.ForeColor = System.Drawing.Color.Red;
             }

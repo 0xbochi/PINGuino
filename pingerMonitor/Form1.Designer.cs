@@ -289,6 +289,7 @@
             this.Controls.Add(this.lb_ping);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PINGuino";
             this.Load += new System.EventHandler(this.Form1_Load);
